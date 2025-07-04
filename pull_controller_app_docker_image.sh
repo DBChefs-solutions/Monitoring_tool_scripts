@@ -113,9 +113,9 @@ pull_docker_image() {
   echo "========================================="
 }
 
-check_docker
+# check_docker
 
-check_ports
+# check_ports
 
 pull_docker_image
 
