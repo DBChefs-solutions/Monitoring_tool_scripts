@@ -2,7 +2,9 @@
 
 set -e
 
-source ./check_requirements.sh
+# source ./check_requirements.sh
+curl -fsSL https://raw.githubusercontent.com/deepakkundra1/dbchefs-public-scripts/main/check_requirements.sh | bash
+
 
 echo "========================================="
 echo "Starting DBChefs Application..."
