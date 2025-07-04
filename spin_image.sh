@@ -2,7 +2,7 @@
 
 set -e
 
-# source ./check_requirements.sh
+source ./check_requirements.sh
 
 echo "========================================="
 echo "Starting DBChefs Application..."
