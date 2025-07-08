@@ -79,13 +79,6 @@ pull_docker_image() {
   VERSION="latest"
   IMAGE_NAME="$DOCKER_USERNAME/$REPOSITORY_NAME:$VERSION"
 
-  # Check if logged in
-  if ! docker info | grep -q "Username: $DOCKER_USERNAME"; then
-    echo "⚠️ You are not logged in to Docker Hub as $DOCKER_USERNAME"
-    echo "Attempting to log in..."
-    docker login
-  fi
-
   echo "Pulling image: $IMAGE_NAME"
   docker pull $IMAGE_NAME
 
