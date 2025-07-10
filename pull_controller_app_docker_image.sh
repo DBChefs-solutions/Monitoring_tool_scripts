@@ -73,11 +73,11 @@ pull_docker_image() {
   POSTGRES_USER="postgres"
   POSTGRES_PASSWORD="123456789"
 
-  INFLUX_USER="admin"
-  INFLUX_PASSWORD="admin123"
-  INFLUX_ORG="dbchefs"
-  INFLUX_BUCKET="dbchefs_bucket"
-  INFLUX_TOKEN="my-super-token"
+  # INFLUX_USER="admin"
+  # INFLUX_PASSWORD="admin123"
+  # INFLUX_ORG="dbchefs"
+  # INFLUX_BUCKET="dbchefs_bucket"
+  # INFLUX_TOKEN="my-super-token"
 
   # Docker Hub repo and image
   DOCKER_USERNAME="deepakkundra"
