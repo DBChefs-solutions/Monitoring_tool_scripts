@@ -15,11 +15,21 @@ curl -fsSL https://github.com/deepakkundra1/dbchefs-public-scripts/releases/down
 echo "Installing go agent package"
 sudo dpkg -i goAgent_1.0.0_amd64.deb
 
-echo "Saving token and server URL to /etc/goAgent/config.yml"
-sudo mkdir -p /etc/goAgent
+echo "Creating config directory"
+sudo mkdir -p /etc/go-agent
 
 # Write YAML config
-echo -e "token: \"$TOKEN\"\nserver_url: \"$SERVER_URL\"" | sudo tee /etc/goAgent/config.yml > /dev/null
+echo "Saving token, server URL, and default MySQL config to /etc/goAgent/config.yml"
+cat <<EOF | sudo tee /etc/go-agent/config.yml > /dev/null
+token: "$TOKEN"
+server_url: "$SERVER_URL" 
+mysql:
+  user: "root"
+  password: "duskbyte"
+  host: "127.0.0.1"
+  port: 3306
+  database: ""
+EOF
 
 echo "Enabling and starting service"
 sudo systemctl daemon-reload
