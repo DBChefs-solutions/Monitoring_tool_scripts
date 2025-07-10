@@ -19,7 +19,7 @@ echo "Creating config directory"
 sudo mkdir -p /etc/go-agent
 
 # Write YAML config
-echo "Saving token, server URL, and default MySQL config to /etc/goAgent/config.yml"
+echo "Saving token, server URL, and default MySQL config to /etc/go-agent/config.yml"
 cat <<EOF | sudo tee /etc/go-agent/config.yml > /dev/null
 token: "$TOKEN"
 server_url: "$SERVER_URL" 
