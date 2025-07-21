@@ -22,7 +22,15 @@ sudo mkdir -p /etc/go-agent
 echo "Saving token, server URL, and default MySQL config to /etc/go-agent/config.yml"
 cat <<EOF | sudo tee /etc/go-agent/config.yml > /dev/null
 token: "$TOKEN"
-server_url: "$SERVER_URL" 
+server_url: "$SERVER_URL"
+log:
+  directory: "/var/log/go-agent"
+  access_file: "access.log"
+  error_file: "error.log"
+
+paths:
+  config_path: "/etc/go-agent/config.yml"
+
 mysql:
   user: "root"
   password: "duskbyte"
