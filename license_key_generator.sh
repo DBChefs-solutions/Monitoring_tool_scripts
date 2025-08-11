@@ -87,7 +87,7 @@ echo "Expires At: $expires_at"
 echo "===================="
 
 # Prepare the string
-license_str="${machine_ip}|${email}|${machine_count}|${valid_from}|${expires_at}"
+license_str="${email}|${machine_count}|${valid_from}|${expires_at}|${machine_ip}"
 
 # Encode using PHP
 encoded=$(php -r "echo base64_encode('$license_str');")
