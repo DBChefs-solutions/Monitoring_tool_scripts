@@ -1,5 +1,32 @@
 #!/bin/bash
 
+# Take user input for Machine IP Address
+while true; do
+  echo "Enter IP address of the machine you want to run the controller app (e.g., 192.168.1.100):"
+  read machine_ip
+
+  # Basic IPv4 format validation
+  if [[ "$machine_ip" =~ ^([0-9]{1,3}\.){3}[0-9]{1,3}$ ]]; then
+    # Check each octet is between 0 and 255
+    valid=true
+    IFS='.' read -ra octets <<< "$machine_ip"
+    for octet in "${octets[@]}"; do
+      if ((octet < 0 || octet > 255)); then
+        valid=false
+        break
+      fi
+    done
+    if $valid; then
+      break
+    else
+      echo "Invalid IP address: Each octet must be between 0 and 255."
+    fi
+  else
+    echo "Invalid IP format. Please use IPv4 format (e.g., 192.168.1.100)."
+  fi
+done
+
+
 # Take user input for email
 while true; do
   echo "Enter email (e.g., test@gmail.com):"
@@ -52,6 +79,7 @@ done
 # For testing purposes..
 echo "===================="
 echo "License Details:"
+echo "Machine IP: $machine_ip"
 echo "Email: $email"
 echo "Machine Count: $machine_count"
 echo "Valid From: $valid_from"
@@ -59,7 +87,7 @@ echo "Expires At: $expires_at"
 echo "===================="
 
 # Prepare the string
-license_str="${email}|${machine_count}|${valid_from}|${expires_at}"
+license_str="${machine_ip}|${email}|${machine_count}|${valid_from}|${expires_at}"
 
 # Encode using PHP
 encoded=$(php -r "echo base64_encode('$license_str');")
