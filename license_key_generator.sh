@@ -76,7 +76,7 @@ while true; do
   fi
 done
 
-# For testing purposes..
+# license summary..
 echo "===================="
 echo "License Details:"
 echo "Machine IP: $machine_ip"
