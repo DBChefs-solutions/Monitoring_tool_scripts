@@ -68,17 +68,6 @@ pull_docker_image() {
   echo "Starting DBChefs Application..."
   echo "========================================="
 
-  # Hardcoded Database credentials
-  POSTGRES_DB="db_chefs"
-  POSTGRES_USER="postgres"
-  POSTGRES_PASSWORD="123456789"
-
-  INFLUX_USER="admin"
-  INFLUX_PASSWORD="admin123"
-  INFLUX_ORG="dbchefs"
-  INFLUX_BUCKET="dbchefs_bucket"
-  INFLUX_TOKEN="my-super-token"
-
   # Docker Hub repo and image
   DOCKER_USERNAME="deepakkundra"
   REPOSITORY_NAME="duskbyte"
