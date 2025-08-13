@@ -1,5 +1,33 @@
 #!/bin/bash
 
+echo "Stopping goAgent service..."
+sudo systemctl stop goAgent
+
+echo "Removing goAgent package..."
+sudo dpkg -r goAgent
+
+echo "Deleting goAgent binary..."
+sudo rm -f /usr/local/bin/goAgent
+
+echo "Removing systemd service definition..."
+sudo rm -f /lib/systemd/system/goAgent.service
+
+echo "Reloading systemd daemon..."
+sudo systemctl daemon-reload
+
+echo "Removing log files..."
+sudo rm -f /var/log/go-agent/error.log
+sudo rm -f /var/log/go-agent/access.log
+sudo rm -f /var/log/goAgent/error.log
+sudo rm -f /var/log/goAgent/access.log
+
+echo "Removing configuration file..."
+sudo rm -f /etc/goAgent/config.yml
+sudo rm -f /etc/go-agent/config.yml
+
+echo "✔ goAgent cleanup completed."
+
+
 TOKEN=$1
 SERVER_URL=$2
 PACKAGE_NAME="goAgent_1.0.0_amd64.deb"  # change this when version changes
@@ -14,7 +42,7 @@ echo "Downloading $PACKAGE_NAME package..."
 curl -fsSL "$SERVER_URL/api/agent/download/$PACKAGE_NAME" -o "$PACKAGE_NAME"
 
 echo "Installing go agent package"
-sudo dpkg -i goAgent_1.0.0_amd64.deb
+sudo dpkg -i $PACKAGE_NAME
 
 echo "Creating config directory"
 sudo mkdir -p /etc/go-agent
@@ -33,10 +61,10 @@ paths:
   config_path: "/etc/go-agent/config.yml"
 
 mysql:
-  user: "root"
-  password: "duskbyte"
-  host: "127.0.0.1"
-  port: 3306
+  user: ""
+  password: ""
+  host: ""
+  port: 
   database: ""
 EOF
 
