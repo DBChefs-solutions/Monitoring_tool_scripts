@@ -89,8 +89,8 @@ echo "===================="
 # Prepare the string
 license_str="${email}|${machine_count}|${valid_from}|${expires_at}|${machine_ip}"
 
-# Encode using PHP
-encoded=$(php -r "echo base64_encode('$license_str');")
+# Encode
+encoded=$(printf %s "$license_str" | base64 -w 0)
 
 # Output the result
 echo "Encoded License String:"
