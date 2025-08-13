@@ -2,6 +2,7 @@
 
 TOKEN=$1
 SERVER_URL=$2
+PACKAGE_NAME="goAgent_1.0.0_amd64.deb"  # change this when version changes
 
 if [ -z "$TOKEN" ] || [ -z "$SERVER_URL" ]; then
   echo "Error: Token or Server URL missing."
@@ -9,8 +10,8 @@ if [ -z "$TOKEN" ] || [ -z "$SERVER_URL" ]; then
   exit 1
 fi
 
-echo "Downloading goAgent_1.0.0_amd64.deb package..."
-curl -fsSL https://github.com/deepakkundra1/dbchefs-public-scripts/releases/download/v1.0.0/goAgent_1.0.0_amd64.deb -o goAgent_1.0.0_amd64.deb
+echo "Downloading $PACKAGE_NAME package..."
+curl -fsSL "$SERVER_URL/api/agent/download/$PACKAGE_NAME" -o "$PACKAGE_NAME"
 
 echo "Installing go agent package"
 sudo dpkg -i goAgent_1.0.0_amd64.deb
