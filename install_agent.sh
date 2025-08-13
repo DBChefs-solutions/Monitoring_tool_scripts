@@ -1,6 +1,8 @@
 #!/bin/bash
 
-cleanup() {
+# =========================================================================#
+# Clean up script #
+# =========================================================================#
   echo "Stopping goAgent service..."
   sudo systemctl stop goAgent
 
@@ -28,10 +30,11 @@ cleanup() {
 
   echo "✔ goAgent cleanup completed."
 
-}
+# =========================================================================#
+# Install script #
+# =========================================================================#
 
-
-install() {TOKEN=$1
+TOKEN=$1
 SERVER_URL=$2
 PACKAGE_NAME="goAgent_1.0.0_amd64.deb"  # change this when version changes
 
@@ -79,7 +82,4 @@ sudo systemctl start goAgent
 rm -f goAgent.deb
 
 echo "Go Agent installed and running!"
-}
 
-cleanup
-install
