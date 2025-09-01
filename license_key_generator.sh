@@ -53,16 +53,7 @@ while true; do
 done
 
 # Take user input for Valid From Date with example
-while true; do
-  echo "Enter valid from date (e.g., 02/08/2025 in DD/MM/YYYY):"
-  read valid_from
-
-  if [[ "$valid_from" =~ ^([0-9]{2})/([0-9]{2})/([0-9]{4})$ ]]; then
-    break
-  else
-    echo "Invalid date format. Please use DD/MM/YYYY."
-  fi
-done
+valid_from=$(date +"%d/%m/%Y")
 
 # Take user input for Expiry Date
 while true; do
@@ -82,7 +73,6 @@ echo "License Details:"
 echo "Machine IP: $machine_ip"
 echo "Email: $email"
 echo "Machine Count: $machine_count"
-echo "Valid From: $valid_from"
 echo "Expires At: $expires_at"
 echo "===================="
 
