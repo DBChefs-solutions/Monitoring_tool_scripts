@@ -72,7 +72,7 @@ paths:
   config_path: "/etc/go-agent/config.yml"
 
 mysql:
- user: "$DB_USER"
+  user: "$DB_USER"
   password: "$DB_PASS"
   host: "$DB_HOST"
   port: $DB_PORT
