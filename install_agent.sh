@@ -36,11 +36,12 @@
 
 TOKEN=$1
 SERVER_URL=$2
+ENCODED_DB=$3
 PACKAGE_NAME="goAgent_1.0.0_amd64.deb"  # change this when version changes
 
-if [ -z "$TOKEN" ] || [ -z "$SERVER_URL" ]; then
-  echo "Error: Token or Server URL missing."
-  echo "Usage: bash -s <AGENT_KEY> <SERVER_URL>"
+if [ -z "$TOKEN" ] || [ -z "$SERVER_URL" ] || [ -z "$ENCODED_DB" ]; then
+  echo "Error: Token, Server URL or DB credentials missing."
+  echo "Usage: bash -s <AGENT_KEY> <SERVER_URL> <ENCODED_DB_CREDENTIALS>"
   exit 1
 fi
 
@@ -52,6 +53,10 @@ sudo dpkg -i $PACKAGE_NAME
 
 echo "Creating config directory"
 sudo mkdir -p /etc/go-agent
+
+# Decode DB credentials
+DB_STRING=$(echo "$ENCODED_DB" | base64 -d)
+IFS='|' read -r DB_USER DB_PASS DB_HOST DB_PORT DB_NAME <<< "$DB_STRING"
 
 # Write YAML config
 echo "Saving token, server URL, and default MySQL config to /etc/go-agent/config.yml"
@@ -67,11 +72,11 @@ paths:
   config_path: "/etc/go-agent/config.yml"
 
 mysql:
-  user: ""
-  password: ""
-  host: ""
-  port: 
-  database: ""
+ user: "$DB_USER"
+  password: "$DB_PASS"
+  host: "$DB_HOST"
+  port: $DB_PORT
+  database: "$DB_NAME"
 EOF
 
 echo "Enabling and starting service"
