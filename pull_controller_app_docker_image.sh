@@ -2,8 +2,9 @@
 
 set -euo pipefail
 
-DOCKER_USERNAME="deepakkundra"
-REPOSITORY_NAME="duskbyte"
+DOCKER_USERNAME="dbchefsfsolutions"
+REPOSITORY_NAME="monitoring-tool"
+
 VERSION="latest"      
 IMAGE_NAME="$DOCKER_USERNAME/$REPOSITORY_NAME:$VERSION"
 CONTAINER_NAME="dbchefs-app"
