@@ -25,7 +25,7 @@ if docker ps -aq -f name="^${CONTAINER_NAME}$" | grep -q .; then
   docker rm -f "$CONTAINER_NAME"
 fi
 
-echo "Starting container '$CONTAINER_NAME'..."
+echo "Starting container '$CONTAINER_NAME'..."  
 
 docker run -d \
   --name "$CONTAINER_NAME" \
