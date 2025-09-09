@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-DOCKER_USERNAME="dbchefsfsolutions"
+DOCKER_USERNAME="dbchefssolutions"
 REPOSITORY_NAME="monitoring-tool"
 
 VERSION="latest"      
