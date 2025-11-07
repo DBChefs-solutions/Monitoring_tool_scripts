@@ -5,7 +5,7 @@ set -euo pipefail
 DOCKER_USERNAME="dbchefssolutions"
 REPOSITORY_NAME="monitoring-tool"
 
-VERSION="latest"      
+VERSION="production"
 IMAGE_NAME="$DOCKER_USERNAME/$REPOSITORY_NAME:$VERSION"
 CONTAINER_NAME="dbchefs-app"
 
